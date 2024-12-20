@@ -15,7 +15,8 @@ class InscriptionSubscriber
     public function __construct(
         private readonly UserPasswordHasherInterface $passwordHasher,
         private readonly UserRepository $userRepository,
-    ) {}
+    ) {
+    }
 
     public function prePersist(User $user): void
     {

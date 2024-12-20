@@ -3,18 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use App\Entity\Comment;
-use App\Entity\Playlist;
-use App\Entity\WatchHistory;
-use App\Entity\PlaylistMedia;
-use App\Enum\AccountStatusEnum;
-use App\Entity\SubscriptionHistory;
-use App\Repository\MediaRepository;
 use Doctrine\Persistence\ObjectManager;
-use App\Repository\SubscriptionRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use App\DataFixtures\Faker\FakerFixtureTrait;
-use App\Enum\CommentStatusEnum;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 

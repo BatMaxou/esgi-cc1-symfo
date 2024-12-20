@@ -18,7 +18,8 @@ class SecurityController extends AbstractController
     public function __construct(
         private UserRepository $userRepository,
         private EntityManagerInterface $em,
-    ) {}
+    ) {
+    }
 
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -93,6 +94,7 @@ class SecurityController extends AbstractController
         $user = $this->userRepository->findOneBy(['resetToken' => $token]);
         if (!$user) {
             $this->addFlash('error', 'Token invalide');
+
             return $this->redirectToRoute('home');
         }
 
