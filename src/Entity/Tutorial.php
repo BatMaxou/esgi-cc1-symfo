@@ -57,11 +57,18 @@ class Tutorial
     #[ORM\OneToMany(targetEntity: TutorialComment::class, mappedBy: 'tutorial')]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, TutorialStep>
+     */
+    #[ORM\OneToMany(targetEntity: TutorialStep::class, mappedBy: 'tutorial')]
+    private Collection $tutorialSteps;
+
     public function __construct()
     {
         $this->disciplines = new ArrayCollection();
         $this->ratings = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->tutorialSteps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,6 +238,36 @@ class Tutorial
             // set the owning side to null (unless already changed)
             if ($comment->getTutorial() === $this) {
                 $comment->setTutorial(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TutorialStep>
+     */
+    public function getTutorialSteps(): Collection
+    {
+        return $this->tutorialSteps;
+    }
+
+    public function addTutorialStep(TutorialStep $tutorialStep): static
+    {
+        if (!$this->tutorialSteps->contains($tutorialStep)) {
+            $this->tutorialSteps->add($tutorialStep);
+            $tutorialStep->setTutorial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTutorialStep(TutorialStep $tutorialStep): static
+    {
+        if ($this->tutorialSteps->removeElement($tutorialStep)) {
+            // set the owning side to null (unless already changed)
+            if ($tutorialStep->getTutorial() === $this) {
+                $tutorialStep->setTutorial(null);
             }
         }
 

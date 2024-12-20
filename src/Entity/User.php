@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var RoleEnum[]
      */
     #[ORM\Column(type: Types::JSON)]
-    private array $roles;
+    private array $roles = [];
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $resetToken = null;
@@ -66,7 +66,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->roles[] = RoleEnum::USER;
         $this->disciplineSubscriptions = new ArrayCollection();
         $this->tutorials = new ArrayCollection();
         $this->ratings = new ArrayCollection();
@@ -125,11 +124,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return RoleEnum[]
+     * @return string[]
      */
     public function getRoles(): array
     {
-        return $this->roles;
+        return [RoleEnum::USER->value, ...array_map(fn (RoleEnum $role) => $role->value, $this->roles)];
+    }
+
+    public function addRole(RoleEnum $role): static
+    {
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    public function removeRole(RoleEnum $role): static
+    {
+        $key = array_search($role, $this->roles, true);
+        if (false !== $key) {
+            unset($this->roles[$key]);
+        }
+
+        return $this;
     }
 
     public function getUserIdentifier(): string

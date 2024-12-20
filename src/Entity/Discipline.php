@@ -16,7 +16,7 @@ class Discipline
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $na√me = null;
+    private ?string $name = null;
 
     /**
      * @var Collection<int, DisciplineSubscription>
@@ -41,14 +41,14 @@ class Discipline
         return $this->id;
     }
 
-    public function getNa√me(): ?string
+    public function getName(): ?string
     {
-        return $this->na√me;
+        return $this->name;
     }
 
-    public function setNa√me(string $na√me): static
+    public function setName(string $name): static
     {
-        $this->na√me = $na√me;
+        $this->name = $name;
 
         return $this;
     }

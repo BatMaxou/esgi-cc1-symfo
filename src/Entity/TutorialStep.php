@@ -32,6 +32,10 @@ class TutorialStep
     #[ORM\OneToMany(targetEntity: TutorialStepComment::class, mappedBy: 'step')]
     private Collection $comments;
 
+    #[ORM\ManyToOne(inversedBy: 'tutorialSteps')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Tutorial $tutorial = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -104,6 +108,18 @@ class TutorialStep
                 $comment->setStep(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTutorial(): ?Tutorial
+    {
+        return $this->tutorial;
+    }
+
+    public function setTutorial(?Tutorial $tutorial): static
+    {
+        $this->tutorial = $tutorial;
 
         return $this;
     }
