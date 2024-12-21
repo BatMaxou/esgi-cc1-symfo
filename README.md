@@ -14,12 +14,12 @@ Pas besoin que le site soit une oeuvre d'art, par contre il faut que ce soit un 
 
 ### Features à faire sur les projets : 
 
-1. Créer les entités et faire les relations (minimum 4 entités)
-2. Créer des fixtures (PHP ou YAML)
-3. Faire l'authentification 
-	- login
-	- mdp oublié, reset mdp
-	- Avoir 3 roles différents (ADMIN, USER, BANNED)
+1. Créer les entités et faire les relations (minimum 4 entités) [x]
+2. Créer des fixtures (PHP ou YAML) [x]
+3. Faire l'authentification [x]
+	- login	[x]
+	- mdp oublié, reset mdp [x]
+	- Avoir 3 roles différents (ADMIN, USER, BANNED) [x]
 4. Afficher du contenu dynamiquement en fonction de si l'utilisateur est connecté ou non
 	- Si connecté, afficher son nom et prénom
 	- Si non connecté, afficher un bouton pour se connecter

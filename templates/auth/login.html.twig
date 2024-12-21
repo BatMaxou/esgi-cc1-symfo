@@ -2,20 +2,29 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block targetClass %}login{% endblock %}
+
 {% block body %}
     <h1>Connexion</h1>
 
-    <form method="post">
-        <div>
-            <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+    <form method="POST" class="form">
+        <input type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" placeholder="Adresse Email" required autofocus>
+        <input type="password" name="_password" id="password" autocomplete="current-password" placeholder="Mot de passe" required>
+
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <button class="btn">
+            Se connecter
+        </button>
 
         <div>
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
+            <a href="{{ path('forgot') }}" class="link">
+                Vous avez oubliez votre mot de passe ?
+            </a>
         </div>
 
-        <button type="submit">Se connecter</button>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     </form>
 {% endblock %}

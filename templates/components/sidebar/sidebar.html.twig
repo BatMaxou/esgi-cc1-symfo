@@ -1,0 +1,45 @@
+{% set linksMap = {
+    'home': {
+        'display': true,
+        'title': 'Accueil',
+        'url': path('home'),
+    },
+    'register': {
+        'display': null == app.user,
+        'title': 'S\'inscrire',
+        'url': path('register'),
+    },
+    'login': {
+        'display': null == app.user,
+        'title': 'Se connecter',
+        'url': path("app_login"),
+    },
+    'logout': {
+        'display': null != app.user,
+        'title': 'Déconnexion',
+        'url': path("app_logout"),
+    },
+} %}
+
+<aside class="sidebar">
+    <h2>Tutorials</h2>
+
+    {% if app.user %}
+        <div class="profile">
+            Connecter en tant que : <span class="username">{{ app.user.username }}</span>
+        </div>
+    {% endif %}
+
+    <nav class="navigation">
+        <ul class="list">
+            {% for key, value in linksMap %}
+                {% include 'components/sidebar/menu-link.html.twig' with {
+                    'display': value.display,
+                    'title': value.title,
+                    'url': value.url,
+                    'active': app.request.attributes.get('_route') == key,
+                } %}
+            {% endfor %}
+        </ul>
+    </nav>
+</aside>

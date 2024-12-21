@@ -1,0 +1,29 @@
+@use './../variables' as v;
+
+.btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: v.$black;
+    color: v.$white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    cursor: pointer;
+
+    &.success {
+        background-color: v.$success;
+    }
+
+    &.error {
+        background-color: v.$error;
+    }
+
+    &.warning {
+        background-color: v.$warning;
+    }
+
+    &.info {
+        background-color: v.$info;
+    }
+}

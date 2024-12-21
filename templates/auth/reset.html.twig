@@ -5,12 +5,13 @@
 {% block body %}
     <h1>Réinitialisation du mot de passe</h1>
 
-    <form method="post">
-        <div>
-            <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-
-        <button type="submit">Envoyer</button>
+    <form method="POST" class="form">
+        <input value="{{ email }}" disabled id="username" type="text" placeholder="Adresse Email"/>
+        <input name="password" id="password" type="password" placeholder="Nouveau mot de passe"/>
+        <input name="confirm" id="repeat-password" type="password" placeholder="Resaisissez votre nouveau mot de passe"/>
+        
+        <button class="btn">
+            Changer mon mot de passe
+        </button>
     </form>
 {% endblock %}

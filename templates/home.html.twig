@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur notre site !</h1>
+
+    {% if banned is defined and banned %}
+        {% include 'components/banner/ban.html.twig' %}
+    {% endif %}
+{% endblock %}

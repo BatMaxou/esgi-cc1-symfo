@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     /**
-     * @var RoleEnum[]
+     * @var string[]
      */
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
@@ -128,12 +128,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        return [RoleEnum::USER->value, ...array_map(fn (RoleEnum $role) => $role->value, $this->roles)];
+        return [RoleEnum::USER->value, ...$this->roles];
     }
 
     public function addRole(RoleEnum $role): static
     {
-        if (!in_array($role, $this->roles, true)) {
+        if (!in_array($role->value, $this->roles, true)) {
             $this->roles[] = $role;
         }
 
@@ -148,6 +148,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function hasRole(RoleEnum $role): bool
+    {
+        return in_array($role->value, $this->roles, true);
+    }
+
+    public function isBanned(): bool
+    {
+        return $this->hasRole(RoleEnum::BANNED);
     }
 
     public function getUserIdentifier(): string

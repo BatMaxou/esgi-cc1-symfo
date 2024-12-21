@@ -5,12 +5,11 @@
 {% block body %}
     <h1>Mot de passe oublié</h1>
 
-    <form method="post">
-        <div>
-            <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-
-        <button type="submit">Envoyer</button>
+    <form method="POST" class="form">
+        <input name="email" id="username" type="text" placeholder="Adresse Email"/>
+        
+        <button class="btn">
+            Recevoir l'email de réinitialisation
+        </button>
     </form>
 {% endblock %}
