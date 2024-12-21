@@ -9,15 +9,22 @@
         'title': 'S\'inscrire',
         'url': path('register'),
     },
-    'login': {
+    'app_login': {
         'display': null == app.user,
         'title': 'Se connecter',
         'url': path("app_login"),
     },
-    'logout': {
+    'app_logout': {
         'display': null != app.user,
         'title': 'Déconnexion',
         'url': path("app_logout"),
+    },
+} %}
+
+{% set adminLinksMap = {
+    'admin_discipline': {
+        'title': 'Matières',
+        'url': path('admin_discipline'),
     },
 } %}
 
@@ -31,6 +38,19 @@
     {% endif %}
 
     <nav class="navigation">
+        {% if is_granted('ROLE_ADMIN') %}
+            <ul class="list">
+                {% for key, value in adminLinksMap %}
+                    {% include 'components/sidebar/menu-link.html.twig' with {
+                        'display': true,
+                        'title': value.title,
+                        'url': value.url,
+                        'active': app.request.attributes.get('_route') == key,
+                    } %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
         <ul class="list">
             {% for key, value in linksMap %}
                 {% include 'components/sidebar/menu-link.html.twig' with {

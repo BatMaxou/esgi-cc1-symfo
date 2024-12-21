@@ -1,0 +1,37 @@
+@use './../variables' as v;
+
+.adminPage {
+    gap: 40px;
+
+    table {
+        width: 100%;
+
+        th, td {
+            text-align: center;
+            border: 1px solid v.$black;
+            border-radius: 5px;
+            padding: 5px;
+
+            &.actions {
+                width: 150px;
+
+                > * {
+                    margin-top: 5px;
+
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    label {
+        display: none;
+    }
+
+    > .actions {
+        display: flex;
+        gap: 10px;
+    }
+}

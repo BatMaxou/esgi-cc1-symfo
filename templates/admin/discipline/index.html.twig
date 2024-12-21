@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matières{% endblock %}
+
+{% block targetClass %}adminPage{% endblock %}
+
+{% block body %}
+    <h1>Matières</h1>
+
+    <a href="{{ path('admin_discipline_new') }}" class="btn">Créer un nouvelle matière</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th class="actions">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for discipline in disciplines %}
+            <tr>
+                <td>{{ discipline.id }}</td>
+                <td>{{ discipline.name }}</td>
+                <td class="actions">
+                    <a href="{{ path('admin_discipline_show', {'id': discipline.id}) }}" class="btn">Voir</a>
+                    <a href="{{ path('admin_discipline_edit', {'id': discipline.id}) }}" class="btn info">Modifier</a>
+                    {{ include('admin/discipline/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucunes données trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

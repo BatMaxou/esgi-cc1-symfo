@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une Matière{% endblock %}
+
+{% block targetClass %}adminPage{% endblock %}
+
+{% block body %}
+    <h1>Modifier une matière</h1>
+
+    <div class="actions">
+        <a href="{{ path('admin_discipline') }}" class="btn">Retour à la liste</a>
+        {{ include('admin/discipline/_delete_form.html.twig') }}
+    </div>
+
+    {{ include('admin/discipline/_form.html.twig') }}
+{% endblock %}

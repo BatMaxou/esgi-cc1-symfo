@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Matière{% endblock %}
+
+{% block targetClass %}adminPage{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Matière</h1>
+    
+    <div class="actions">
+        <a href="{{ path('admin_discipline') }}" class="btn">Retour à la liste</a>
+    </div>
+
+    {{ include('admin/discipline/_form.html.twig') }}
+{% endblock %}
